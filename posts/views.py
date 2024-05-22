@@ -76,17 +76,17 @@ class PostModelViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
 # 과제 2
-class PostListView(APIView): # PostListView는 APIView를 상속받은 클래스
-  def get(self, request): # GET 요청을 처리하기 위해 method 정의
-    posts = Post.objects.all() # Post model의 모든 객체를 posts 변수에 저장
+class PostListView(APIView): 
+  def get(self, request): 
+    posts = Post.objects.all() 
     serializers = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
 # 과제 3 
 
 class AddCommentView(APIView):
-  def post(self, request): # POST 요청을 처리하기 위해 댓글 데이터를 받아서 데이터베이스에 저장
-    serializer = CommentSerializer(data=request.data) # request는 요청 데이터 포함
-    if serializer.is_valid(): # 데이터 유효성 검사
+  def post(self, request): 
+    serializer = CommentSerializer(data=request.data) 
+    if serializer.is_valid(): 
       serializer.save()
       return Response(serializer.data)
