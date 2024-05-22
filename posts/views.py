@@ -83,7 +83,6 @@ class PostListView(APIView):
     return Response(serializer.data)
 
 # 과제 3 
-
 class AddCommentView(APIView):
   def post(self, request): 
     serializer = CommentSerializer(data=request.data) 
